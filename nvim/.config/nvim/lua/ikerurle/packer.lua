@@ -36,7 +36,13 @@ require('packer').startup(function(use)
   }
 
   use {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimdev/guard.nvim',
+    config = function()
+      require("guard").setup {
+        fmt_on_save = true,
+        lsp_as_default_formatter = true,
+      }
+    end
   }
 
   use { -- Additional text objects via treesitter

@@ -1,4 +1,3 @@
-
 -- See `:help vim.o`
 -- Make line numbers default
 vim.wo.number = true
@@ -6,6 +5,9 @@ vim.opt.relativenumber = true
 
 -- Set highlight on search
 vim.o.hlsearch = false
+
+vim.o.tabstop = 2
+vim.o.expandtab = true
 
 
 -- Enable mouse mode

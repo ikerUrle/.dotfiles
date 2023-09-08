@@ -1,10 +1,3 @@
-local null_ls = require("null-ls")
+local ft = require('guard.filetype')
 
-
-null_ls.setup {
-  source = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.eslint,
-    -- null_ls.builtins.formatting.spell,
-  }
-}
+ft('typescript,javascript,typescriptreact,html'):fmt('prettierd')
