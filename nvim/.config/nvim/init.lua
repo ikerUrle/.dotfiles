@@ -72,7 +72,9 @@ pcall(require('telescope').load_extension, 'fzf')
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'lua', 'python', 'rust', 'typescript', 'vue', 'html', 'scss', 'css', 'go' },
-
+  autotag = {
+    enable = true
+  },
   highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
@@ -120,11 +122,11 @@ require('nvim-treesitter.configs').setup {
     },
     swap = {
       enable = true,
-      swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-      },
       swap_previous = {
         ['<leader>A'] = '@parameter.inner',
+      },
+      swap_next = {
+        ['<leader>a'] = '@parameter.inner',
       },
     },
   },
