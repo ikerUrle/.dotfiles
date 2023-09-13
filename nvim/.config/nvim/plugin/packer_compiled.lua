@@ -111,7 +111,7 @@ _G.packer_plugins = {
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["guard.nvim"] = {
-    config = { "\27LJ\2\2a\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\2\16fmt_on_save\2\29lsp_as_default_formatter\2\nsetup\nguard\frequire\0" },
+    config = { "\27LJ\2\2a\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\2\16fmt_on_save\1\29lsp_as_default_formatter\2\nsetup\nguard\frequire\0" },
     loaded = true,
     path = "/home/iurlezaga/.local/share/nvim/site/pack/packer/start/guard.nvim",
     url = "https://github.com/nvimdev/guard.nvim"
@@ -255,7 +255,7 @@ try_loadstring("\27LJ\2\2@\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B
 time([[Config for nvim-autopairs]], false)
 -- Config for: guard.nvim
 time([[Config for guard.nvim]], true)
-try_loadstring("\27LJ\2\2a\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\2\16fmt_on_save\2\29lsp_as_default_formatter\2\nsetup\nguard\frequire\0", "config", "guard.nvim")
+try_loadstring("\27LJ\2\2a\0\0\2\0\4\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\3\0B\0\2\1K\0\1\0\1\0\2\16fmt_on_save\1\29lsp_as_default_formatter\2\nsetup\nguard\frequire\0", "config", "guard.nvim")
 time([[Config for guard.nvim]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
