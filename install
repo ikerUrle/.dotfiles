@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-STOW_FOLDERS=(nvim tmux zsh)
+STOW_FOLDERS=(nvim tmux zsh bin)
 for folder in $STOW_FOLDERS
 do
     echo "stow $folder"

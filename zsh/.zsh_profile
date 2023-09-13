@@ -1,0 +1,4 @@
+bindkey -s ^f "tmux-sessionizer\n"
+VIM="nvim"
+
+alias vim="nvim"
