@@ -167,13 +167,14 @@ local on_attach = function(_, bufnr)
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  -- nmap('<leader>fa', vim.lsp.buf.format, 'Format code')
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
   -- Create a command `:Format` local to the LSP buffer
 end
 
-vim.keymap.set('n', '<leader>fa', '<cmd>GuardFmt<CR>')
+vim.keymap.set('n', '<leader>fa', '<cmd>Format<CR>')
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
