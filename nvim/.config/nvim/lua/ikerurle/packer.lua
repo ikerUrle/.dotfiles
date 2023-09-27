@@ -1,7 +1,7 @@
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
   vim.cmd [[packadd packer.nvim]]
@@ -10,6 +10,7 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -36,14 +37,94 @@ require('packer').startup(function(use)
   }
 
   use {
-    'nvimdev/guard.nvim',
+    "mfussenegger/nvim-lint",
     config = function()
-      require("guard").setup {
-        fmt_on_save = false,
-        lsp_as_default_formatter = true,
-      }
+        local lint = require("lint")
+        lint.linters_by_ft = {
+            javascript = {
+                "eslint_d"
+            },
+            typescript = {
+                "eslint_d"
+            },
+            javascriptreact = {
+                "eslint_d"
+            },
+            typescriptreact = {
+                "eslint_d"
+            }
+        }
+
+        -- Autocommand for nvim-lint
+        vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {
+            callback = function()
+                  lint.try_lint()
+            end,
+        })
+
+    end
+
+}
+
+  use {
+    "mhartington/formatter.nvim",
+    config = function()
+      local formatter = require("formatter")
+      local default_formatters = require("formatter.defaults")
+      local prettierd = default_formatters.prettierd
+      local stylua = default_formatters.stylua
+      formatter.setup({
+        filetype = {
+          rust = {
+            prettierd
+          },
+          javascript = {
+            prettierd
+          },
+          javascriptreact = {
+            prettierd
+          },
+          typescript = {
+            prettierd
+          },
+          typescriptreact = {
+            prettierd
+          },
+          -- lua = {
+          --   stylua
+          -- },
+          ["*"] = {
+            -- other functions before it
+            function()
+              if vim.api.nvim_get_mode().mode == "v" then
+                vim.lsp.buf.format({
+                  range = {
+                    ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+                    ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+                  }
+                })
+              else
+                vim.lsp.buf.format({ async = true })
+              end
+            end,
+          }
+        }
+      })
     end
   }
+
+  -- use {
+  --   'nvimdev/guard.nvim',
+  --   requires = {
+  --     'nvimdev/guard-collection',
+  --   },
+  --   config = function()
+  --     require("guard").setup {
+  --       fmt_on_save = false,
+  --       lsp_as_default_formatter = true,
+  --     }
+  --   end
+  -- }
 
   use { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
