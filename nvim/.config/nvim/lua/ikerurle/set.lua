@@ -30,7 +30,7 @@ vim.o.scrolloff = 10
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.g.colorscheme = "catppuccin"
+vim.g.colorscheme = "tokyonight"
 
 vim.cmd("colorscheme " .. vim.g.colorscheme)
 

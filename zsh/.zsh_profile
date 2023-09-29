@@ -2,3 +2,4 @@ bindkey -s ^f "tmux-sessionizer\n"
 VIM="nvim"
 
 alias vim="nvim"
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'

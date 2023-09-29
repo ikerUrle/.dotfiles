@@ -1,7 +1,7 @@
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   is_bootstrap = true
   vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
   vim.cmd [[packadd packer.nvim]]
@@ -39,32 +39,35 @@ require('packer').startup(function(use)
   use {
     "mfussenegger/nvim-lint",
     config = function()
-        local lint = require("lint")
-        lint.linters_by_ft = {
-            javascript = {
-                "eslint_d"
-            },
-            typescript = {
-                "eslint_d"
-            },
-            javascriptreact = {
-                "eslint_d"
-            },
-            typescriptreact = {
-                "eslint_d"
-            }
+      local lint = require("lint")
+      lint.linters_by_ft = {
+        javascript = {
+          "eslint_d"
+        },
+        typescript = {
+          "eslint_d"
+        },
+        javascriptreact = {
+          "eslint_d"
+        },
+        typescriptreact = {
+          "eslint_d"
         }
+      }
 
-        -- Autocommand for nvim-lint
-        vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {
-            callback = function()
-                  lint.try_lint()
-            end,
-        })
-
+      -- Autocommand for nvim-lint
+      vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost" }, {
+        callback = function()
+          lint.try_lint()
+        end,
+      })
     end
 
-}
+  }
+  use {
+    'stevearc/conform.nvim',
+    config = function() require('conform').setup() end
+  }
 
   use {
     "mhartington/formatter.nvim",
@@ -90,9 +93,9 @@ require('packer').startup(function(use)
           typescriptreact = {
             prettierd
           },
-          -- lua = {
-          --   stylua
-          -- },
+          lua = {
+            stylua
+          },
           ["*"] = {
             -- other functions before it
             function()
@@ -113,18 +116,6 @@ require('packer').startup(function(use)
     end
   }
 
-  -- use {
-  --   'nvimdev/guard.nvim',
-  --   requires = {
-  --     'nvimdev/guard-collection',
-  --   },
-  --   config = function()
-  --     require("guard").setup {
-  --       fmt_on_save = false,
-  --       lsp_as_default_formatter = true,
-  --     }
-  --   end
-  -- }
 
   use { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',

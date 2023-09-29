@@ -171,10 +171,20 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
-  -- Create a command `:Format` local to the LSP buffer
+  -- nmap('<leader>fa', vim.lsp.buf.format, '[F]ormat with l[S]p')
 end
 
-vim.keymap.set('n', '<leader>fa', '<cmd>Format<CR>')
+
+require('conform').setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- Use a sub-list to run only the first available formatter
+    javascript = { { "prettierd", "prettier" } },
+    vue = { { "prettierd", "prettier" } },
+  },
+})
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
@@ -200,7 +210,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Turn on status information
-require('fidget').setup()
+-- require('fidget').setup()
 
 -- Example custom configuration for lua
 --
