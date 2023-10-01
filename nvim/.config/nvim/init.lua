@@ -30,7 +30,7 @@ require('lualine').setup {
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
+require('ibl').setup {
   char = '┊',
   show_trailing_blankline_indent = false,
 }
