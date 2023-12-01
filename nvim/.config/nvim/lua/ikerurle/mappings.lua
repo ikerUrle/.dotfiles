@@ -13,6 +13,9 @@ vim.keymap.set("n", "<C-H>", "<C-W><C-H>")
 
 vim.keymap.set("n", "<leader>b", "<C-^>")
 
+vim.keymap.set("n", "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

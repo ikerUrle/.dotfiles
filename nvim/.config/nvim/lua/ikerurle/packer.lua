@@ -38,6 +38,9 @@ require('packer').startup(function(use)
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
+  use { -- Highlight function signature
+    'nvim-treesitter/nvim-treesitter-context',
+  }
 
   use {
     "mfussenegger/nvim-lint",
