@@ -1,10 +1,3 @@
-# Download Znap, if it's not there yet.
-[[ -r ~/.zsh/znap/znap.zsh ]] ||
-    git clone --depth 1 -- \
-        https://github.com/marlonrichert/zsh-snap.git ~/.zsh/znap
-source ~/.zsh/znap/znap.zsh  # Start Znap
-
-znap source marlonrichert/zsh-autocomplete
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/scripts:/usr/local/bin:$PATH
 
@@ -80,7 +73,7 @@ source ~/.zsh_profile
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
