@@ -10,7 +10,10 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+base=$(basename "$selected")
+base_dir=$(basename $(dirname "$selected"))
+
+selected_name=$(echo "${base_dir}.${base}" | tr . _)
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
