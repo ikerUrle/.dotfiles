@@ -1,0 +1,9 @@
+[user]
+	name = ikerUrle
+	email = iker@urle.eus
+
+[core]
+	pager = delta
+
+[delta]
+	side-by-side = true
