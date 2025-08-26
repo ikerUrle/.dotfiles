@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/deploys ~/projects ~/ -mindepth 1 -maxdepth 1 -type d 2> /dev/null | fzf)
+    selected=$(find ~/deploys ~/projects ~/work ~/ -mindepth 1 -maxdepth 1 -type d 2> /dev/null | fzf)
 fi
 
 if [[ -z $selected ]]; then
