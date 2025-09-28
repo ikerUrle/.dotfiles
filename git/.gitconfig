@@ -1,9 +1,7 @@
 [user]
-	name = ikerUrle
 	email = iker@urle.eus
-
-[core]
-	pager = delta
-
-[delta]
-	side-by-side = true
+	name = ikerUrle
+[includeIf "gitdir:~/work/"]
+  path = .gitconfig.work
+[includeIf "gitdir:~/projects/"]
+  path = .gitconfig.projects
