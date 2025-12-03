@@ -46,4 +46,4 @@ font-feature = -liga
 font-feature = -dlig
 font-size = 16
 
-
+#theme = Catppuccin Mocha

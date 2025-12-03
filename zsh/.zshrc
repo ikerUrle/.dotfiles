@@ -1,16 +1,18 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/scripts:/usr/local/bin:$PATH
-export JAVA_HOME=/usr/lib/jvm/default
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:/opt/android-sdk/platform-tools
 
-# MACOS
-# export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-# export ANDROID_HOME=$HOME/Library/Android/sdk
+# LINUX
+# export JAVA_HOME=/usr/lib/jvm/default
+# export ANDROID_HOME=$HOME/Android/Sdk
 # export PATH=$PATH:$ANDROID_HOME/emulator
 # export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export PATH=$PATH:/opt/android-sdk/platform-tools
+
+# MACOS
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 
 # Path to your oh-my-zsh installation.

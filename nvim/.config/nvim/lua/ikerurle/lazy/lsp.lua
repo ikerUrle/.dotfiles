@@ -59,38 +59,9 @@ return {
         ensure_installed = { "jq" }
       })
 
-      -- require("typescript-tools").setup({
-      --   capabilities = lsp_zero.get_capabilities(),
-      --   settings = { 
-      --     separate_diagnostic_server = false
-      --   }
-      -- })
-
-      -- local null_ls = require("null-ls")
-      -- null_ls.setup({
-      --   sources = {
-      --     null_ls.builtins.formatting.stylua,
-      --     -- null_ls.builtins.completion.spell,
-      --     require("none-ls.diagnostics.eslint"), -- requires none-ls-extras.nvim
-      --   },
-      -- })
-
       -- Turn on status information
       require('fidget').setup()
 
-      -- require('lspconfig').volar.setup {
-      --   settings = {
-      --     languageFeatures = {
-      --       inlayHints = true
-      --     }
-      --   }
-      -- }
-
-      -- require('lspconfig').ts_ls.setup {
-      --   root_dir = function(...)
-      --     return require("lspconfig.util").root_pattern(".git")(...)
-      --   end,
-      -- }
 
       -- nvim-cmp setup
       local cmp = require 'cmp'
@@ -118,8 +89,4 @@ return {
     end
 
   },
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  -- },
 }
