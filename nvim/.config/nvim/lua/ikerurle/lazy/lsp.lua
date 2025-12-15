@@ -14,6 +14,7 @@ return {
 			vim.keymap.set("n", "<leader>fa", vim.lsp.buf.format)
 			vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action)
 			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
 			require("mason").setup()
 			-- Ensure the servers above are installed
@@ -31,7 +32,6 @@ return {
 			"nvimtools/none-ls-extras.nvim",
 		},
 		config = function()
-
 			require("mason-null-ls").setup({
 				-- ensure_installed = { "eslint", "jq" }
 				ensure_installed = { "jq" },
@@ -43,7 +43,6 @@ return {
 		"hrsh7th/nvim-cmp",
 		dependencies = { "hrsh7th/cmp-nvim-lsp" },
 		config = function()
-
 			-- Turn on status information
 			require("fidget").setup()
 
