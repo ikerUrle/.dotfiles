@@ -4,8 +4,6 @@ return {
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/nvim-cmp",
 			"j-hui/fidget.nvim",
 		},
 		config = function()
@@ -48,7 +46,6 @@ return {
 
 			-- nvim-cmp setup
 			local cmp = require("cmp")
-			local cmp_action = require("lsp-zero").cmp_action()
 
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
@@ -56,8 +53,24 @@ return {
 					["<C-j>"] = cmp.mapping.select_next_item(),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp_action.tab_complete(),
-					["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
+					["<Tab>"] = function(fallback)
+						if not cmp.select_next_item() then
+							if vim.bo.buftype ~= 'prompt' and has_words_before() then
+								cmp.complete()
+							else
+								fallback()
+							end
+						end
+					end,
+					["<S-Tab>"] = function(fallback)
+						if not cmp.select_prev_item() then
+							if vim.bo.buftype ~= 'prompt' and has_words_before() then
+								cmp.complete()
+							else
+								fallback()
+							end
+						end
+					end,
 				}),
 				sources = {
 					{ name = "nvim_lsp" },
