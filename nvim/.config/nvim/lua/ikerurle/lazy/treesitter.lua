@@ -23,6 +23,9 @@ return {
 					"css",
 					"go",
 					"javascript",
+					"terraform",
+					"java",
+					"kotlin"
 				},
 				autotag = {
 					enable = true,

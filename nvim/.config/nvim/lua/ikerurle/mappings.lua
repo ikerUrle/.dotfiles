@@ -5,13 +5,14 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- THE mapping
 vim.keymap.set("i", "kj", "<Esc>")
 
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
+vim.keymap.set("i", "kj", "<Esc>")
 
--- greatest remap ever
-vim.keymap.set("x", "<leader>P", [["_dP]])
-
--- next greatest remap ever : asbjornHaland
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({"n", "v"}, "<leader>P", [["+p]])
 
 -- Manage tabs
 vim.keymap.set("n", "<C-J>", "<C-W><C-J>")
