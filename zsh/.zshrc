@@ -33,7 +33,8 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="bira"
 
 source ~/.zsh_profile
-source /usr/share/nvm/init-nvm.sh
+
+# source /usr/share/nvm/init-nvm.sh
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
