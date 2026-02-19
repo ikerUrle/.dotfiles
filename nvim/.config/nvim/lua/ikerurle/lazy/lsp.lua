@@ -99,6 +99,10 @@ return {
 		end,
 	},
 	{
+		"mfussenegger/nvim-jdtls",
+		ft = "java",  -- Solo cargar cuando abras archivos .java
+	},
+	{
 		"NickvanDyke/opencode.nvim",
 		dependencies = {
 			-- Recommended for `ask()` and `select()`.
