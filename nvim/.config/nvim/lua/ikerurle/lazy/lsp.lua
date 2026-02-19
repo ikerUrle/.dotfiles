@@ -9,10 +9,30 @@ return {
 		config = function()
 			local servers = { "clangd", "rust_analyzer", "pyright", "lua_ls", "gopls", "ts_ls" }
 
+			-- Configuración de diagnósticos inline
+			vim.diagnostic.config({
+				virtual_text = true,  -- Habilita los mensajes inline
+				signs = true,
+				underline = true,
+				update_in_insert = false,  -- No actualiza mientras escribes
+				severity_sort = true,  -- Errores tienen prioridad sobre warnings
+			})
+
 			vim.keymap.set("n", "<leader>fa", vim.lsp.buf.format)
 			vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action)
 			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+
+			-- Configuración específica para lua_ls usando vim.lsp.config
+			vim.lsp.config.lua_ls = {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			}
 
 			require("mason").setup()
 			-- Ensure the servers above are installed
