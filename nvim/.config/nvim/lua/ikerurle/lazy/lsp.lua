@@ -3,6 +3,7 @@ return {
 		"VonHeikemen/lsp-zero.nvim",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
+			"williamboman/mason.nvim",
 			"neovim/nvim-lspconfig",
 			"j-hui/fidget.nvim",
 		},
@@ -18,7 +19,18 @@ return {
 				severity_sort = true,  -- Errores tienen prioridad sobre warnings
 			})
 
-			vim.keymap.set("n", "<leader>fa", vim.lsp.buf.format)
+			vim.keymap.set("n", "<leader>fa", function()
+				local clients = vim.lsp.get_clients({ bufnr = 0 })
+				local has_null_ls = vim.iter(clients):any(function(c)
+					return c.name == "null-ls" and c.supports_method("textDocument/formatting")
+				end)
+
+				if has_null_ls then
+					vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end })
+				else
+					vim.lsp.buf.format()
+				end
+			end)
 			vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action)
 			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename)
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition)
@@ -45,7 +57,6 @@ return {
 		"jay-babu/mason-null-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"williamboman/mason.nvim",
 			"nvimtools/none-ls.nvim",
 			"nvimtools/none-ls-extras.nvim",
 		},
