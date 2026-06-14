@@ -52,7 +52,7 @@ return {
 				"java",
 				"kotlin"
 			}
-			local alreadyInstalled = require('nvim-treesitter.config').get_installed()
+			local alreadyInstalled = require('nvim-treesitter').get_installed()
 			local parsersToInstall = vim.iter(ensureInstalled)
 					:filter(function(parser)
 						return not vim.tbl_contains(alreadyInstalled, parser)
