@@ -1,5 +1,12 @@
 return {
 	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		opts = { input = {}, picker = {}, terminal = {}, dim = {
+			enabled = true,
+		} },
+	},
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
@@ -12,11 +19,11 @@ return {
 
 			-- Configuración de diagnósticos inline
 			vim.diagnostic.config({
-				virtual_text = true,  -- Habilita los mensajes inline
+				virtual_text = true, -- Habilita los mensajes inline
 				signs = true,
 				underline = true,
-				update_in_insert = false,  -- No actualiza mientras escribes
-				severity_sort = true,  -- Errores tienen prioridad sobre warnings
+				update_in_insert = false, -- No actualiza mientras escribes
+				severity_sort = true, -- Errores tienen prioridad sobre warnings
 			})
 
 			vim.keymap.set("n", "<leader>fa", function()
@@ -26,7 +33,11 @@ return {
 				end)
 
 				if has_null_ls then
-					vim.lsp.buf.format({ filter = function(client) return client.name == "null-ls" end })
+					vim.lsp.buf.format({
+						filter = function(client)
+							return client.name == "null-ls"
+						end,
+					})
 				else
 					vim.lsp.buf.format()
 				end
@@ -86,7 +97,7 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					["<Tab>"] = function(fallback)
 						if not cmp.select_next_item() then
-							if vim.bo.buftype ~= 'prompt' and has_words_before() then
+							if vim.bo.buftype ~= "prompt" and has_words_before() then
 								cmp.complete()
 							else
 								fallback()
@@ -95,7 +106,7 @@ return {
 					end,
 					["<S-Tab>"] = function(fallback)
 						if not cmp.select_prev_item() then
-							if vim.bo.buftype ~= 'prompt' and has_words_before() then
+							if vim.bo.buftype ~= "prompt" and has_words_before() then
 								cmp.complete()
 							else
 								fallback()
@@ -111,16 +122,10 @@ return {
 	},
 	{
 		"mfussenegger/nvim-jdtls",
-		ft = "java",  -- Solo cargar cuando abras archivos .java
+		ft = "java", -- Solo cargar cuando abras archivos .java
 	},
 	{
 		"NickvanDyke/opencode.nvim",
-		dependencies = {
-			-- Recommended for `ask()` and `select()`.
-			-- Required for `snacks` provider.
-			---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-			{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
-		},
 		config = function()
 			---@type opencode.Opts
 			vim.g.opencode_opts = {
@@ -131,25 +136,33 @@ return {
 			vim.o.autoread = true
 
 			-- Recommended/example keymaps.
-			vim.keymap.set({ "n", "x" }, "<leader>o", function() require("opencode").ask("@this: ", { submit = true }) end,
-				{ desc = "Ask opencode…" })
-			vim.keymap.set({ "n", "x" }, "<C-x>", function() require("opencode").select() end,
-				{ desc = "Execute opencode action…" })
-			vim.keymap.set({ "n", "t" }, "<C-q>", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
+			vim.keymap.set({ "n", "x" }, "<leader>o", function()
+				require("opencode").ask("@this: ", { submit = true })
+			end, { desc = "Ask opencode…" })
+			vim.keymap.set({ "n", "x" }, "<C-x>", function()
+				require("opencode").select()
+			end, { desc = "Execute opencode action…" })
+			vim.keymap.set({ "n", "t" }, "<C-q>", function()
+				require("opencode").toggle()
+			end, { desc = "Toggle opencode" })
 
-			vim.keymap.set({ "n", "x" }, "go", function() return require("opencode").operator("@this ") end,
-				{ desc = "Add range to opencode", expr = true })
-			vim.keymap.set("n", "goo", function() return require("opencode").operator("@this ") .. "_" end,
-				{ desc = "Add line to opencode", expr = true })
+			vim.keymap.set({ "n", "x" }, "go", function()
+				return require("opencode").operator("@this ")
+			end, { desc = "Add range to opencode", expr = true })
+			vim.keymap.set("n", "goo", function()
+				return require("opencode").operator("@this ") .. "_"
+			end, { desc = "Add line to opencode", expr = true })
 
-			vim.keymap.set("n", "<S-C-u>", function() require("opencode").command("session.half.page.up") end,
-				{ desc = "Scroll opencode up" })
-			vim.keymap.set("n", "<S-C-d>", function() require("opencode").command("session.half.page.down") end,
-				{ desc = "Scroll opencode down" })
+			vim.keymap.set("n", "<S-C-u>", function()
+				require("opencode").command("session.half.page.up")
+			end, { desc = "Scroll opencode up" })
+			vim.keymap.set("n", "<S-C-d>", function()
+				require("opencode").command("session.half.page.down")
+			end, { desc = "Scroll opencode down" })
 
 			-- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o…".
 			vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
 			vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
 		end,
-	}
+	},
 }
